@@ -1,72 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Learning Journey Tracker</title>
- 
-<style>
-body {
-  font-family: Arial;
-  max-width: 800px;
-  margin: auto;
-  padding: 20px;
-  background: #f5f5f5;
-}
- 
-.card {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #ccc;
-  margin-bottom: 20px;
-}
- 
-.locked {
-  color: red;
-  font-weight: bold;
-}
- 
-button {
-  padding: 10px 15px;
-  background: #5b2d90;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-</style>
- 
-<script>
- 
-let currentDay = 1;
- 
-function openDay(day) {
-  if (day > currentDay) {
-    alert("Access Denied. Future training day is locked.");
-    return;
-  }
- 
-  document.getElementById("attendanceSection").style.display = "block";
-}
- 
-function submitAttendance() {
-  let name = document.getElementById("name").value;
-  if (name == "") {
-    alert("Enter Name");
-    return;
-  }
- 
-  alert("Attendance Recorded Successfully!");
-}
-</script>
- 
+  <title>Learning Journey Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ccc;
+      margin-bottom: 20px;
+    }
+    .locked {
+      color: red;
+      font-weight: bold;
+    }
+    button {
+      padding: 10px 15px;
+      background: #5b2d90;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
 </head>
- 
 <body>
  
 <div class="card">
   <h1>Learning Journey Tracker</h1>
-  <h2>Current Training Day: DAY 1</h2>
-  <p>One QR Code for entire training journey.</p>
+  <h2>Today’s Training Day: <span id="currentDayDisplay">Day 1</span></h2>
+  <p>One QR Code for the entire training journey.</p>
 </div>
  
 <div class="card">
@@ -83,13 +69,30 @@ function submitAttendance() {
   <input id="id" placeholder="Employee ID"><br><br>
  
   <p>What is Benefit Selling?</p>
-  <input type="radio" name="q"> Reading product features<br>
-  <input type="radio" name="q" checked> Explaining benefits that solve customer needs<br>
-  <input type="radio" name="q"> Discussing competitors<br>
-  <input type="radio" name="q"> Shortening the call<br><br>
+  <input type="radio" name="q" value="A"> Reading product features<br>
+  <input type="radio" name="q" value="B" checked> Explaining benefits that solve customer needs<br>
+  <input type="radio" name="q" value="C"> Discussing competitors<br>
+  <input type="radio" name="q" value="D"> Shortening the call<br><br>
  
   <button onclick="submitAttendance()">Submit</button>
 </div>
  
-</body>
-</html>
+<div class="card">
+  <h3>Attendance Tracker</h3>
+  <table id="tracker">
+    <thead>
+      <tr>
+        <th>Employee Name</th>
+        <th>Employee ID</th>
+        <th>Day</th>
+        <th>Answer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Tracker entries will be added here -->
+    </tbody>
+  </table>
+</div>
+ 
+<script>
+//
